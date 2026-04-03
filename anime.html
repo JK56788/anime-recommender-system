@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<header class="navbar">
+  <a href="index.html" class="logo">AnimeList</a>
+   <input type="text" id="search" placeholder="Search anime..." />
+</header>
+<body>
+
+  <div class="section" id="anime-details"></div>
+
+  <script>
+    const anime = JSON.parse(localStorage.getItem("selectedAnime"));
+
+    const container = document.getElementById("anime-details");
+
+    if (!anime) {
+      container.innerHTML = "<p>No anime selected.</p>";
+    } else {
+      container.innerHTML = `
+  <div class="anime-details-container">
+
+    <div class="anime-details-image">
+      <img src="${anime.image_url}" />
+    </div>
+
+    <div class="anime-details-info">
+
+      <h1>${anime.title}</h1>
+      <p><strong>English:</strong> ${anime.title_english || "N/A"}</p>
+      <p><strong>Japanese:</strong> ${anime.title_japanese || "N/A"}</p>
+      <p><strong>Synonyms:</strong> ${anime.title_synonyms || "N/A"}</p>
+
+      <p><strong>Score:</strong> ${anime.score}</p>
+      <p><strong>Rank:</strong> #${anime.rank}</p>
+      <p><strong>Popularity:</strong> #${anime.popularity}</p>
+
+      <div class="anime-meta">
+        <p><strong>Genre:</strong> ${anime.genre}</p>
+        <p><strong>Studio:</strong> ${anime.studio}</p>
+        <p><strong>Episodes:</strong> ${anime.episodes}</p>
+        <p><strong>Status:</strong> ${anime.status}</p>
+        <p><strong>Year:</strong> ${anime.aired_from_year}</p>
+        <p><strong>Duration:</strong> ${anime.duration_min} min</p>
+        <p><strong>Source:</strong> ${anime.source}</p>
+        <p><strong>Rating:</strong> ${anime.rating}</p>
+      </div>
+
+      <div class="anime-meta">
+        <p><strong>Members:</strong> ${anime.members}</p>
+        <p><strong>Favorites:</strong> ${anime.favorites}</p>
+      </div>
+
+      <div class="anime-description">
+        <strong>Background:</strong>
+        <p>${anime.background || "No description available."}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <button onclick="window.history.back()">⬅ Back</button>
+`;
+    }
+  </script>
+
+</body>
+</html>
+
