@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Favorites - AnimeList</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="navbar"> 
+  <a href="index.html" class="logo">AnimeList</a>
+  <input type="text" id="search" placeholder="Search anime..." />
+  <a href="favorites.html" class="nav-favorites">❤️ Favorites</a>
+</header>
+
+<section class="section">
+  <div class="favorites-header">
+  <button onclick="goBack()" class="back-btn">⬅ Back</button>
+  <h2>❤️ Your Favorites</h2>
+  <button id="clear-favorites-btn">Clear All</button>
+</div>
+  <!-- TOP PAGINATION -->
+  <div class="pagination-wrapper">
+  <div id="favorites-pagination-top"></div>
+</div>
+
+   <div id="favorites-grid" class="anime-grid"></div>
+
+    <!-- BOTTOM PAGINATION -->
+  <div class="pagination-wrapper">
+  <div id="favorites-pagination"></div>
+</div>
+</section>
+<script src="script.js"></script>
+
+<div id="confirm-modal" class="modal hidden">
+  <div class="modal-content">
+    <p id="modal-message"></p>
+
+    <div class="modal-actions">
+      <button id="modal-cancel-btn" class="hidden">Cancel</button>
+      <button id="modal-confirm-btn">OK</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
