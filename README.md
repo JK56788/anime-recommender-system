@@ -1,241 +1,199 @@
-# 🎌 Anime Recommender (WIP)
+# 🎬 Anime Recommendation System
 
-A full-stack anime recommendation website built with a Flask backend and a vanilla JavaScript frontend.
+A full-stack anime recommendation platform that delivers personalized and filter-based suggestions using a hybrid recommendation engine.
 
-The application provides filter-based, search-based, and personalized anime recommendations using a preprocessed dataset (up to ~2015).
-
-⚠️ This project is still a work in progress.
-
----
-
-## 🚀 Features
-
-### 🔍 Filtering System
-
-* Multi-genre selection (max 5)
-* Minimum score filtering
-* Maximum episode filtering
-* Adaptive matching (AND / OR logic)
-
-### 🧠 Recommendation Engine
-
-* Content-based filtering using:
-
-  * Genre similarity (one-hot encoding)
-  * Score normalization
-  * Episode normalization
-* Weighted ranking system combining:
-
-  * Score
-  * Genre match strength
-  * Episode count
-  * Search relevance
-
-### 👤 Personalized Recommendations
-
-* Based on recently liked anime (last 5)
-* Uses cosine similarity on feature vectors
-* Fallback system for new users
-
-### 🔎 Search System
-
-* Matches across:
-
-  * Title
-  * English / Japanese titles
-  * Synonyms
-  * Genre
-  * Studio
-
-### 🎞️ UI / UX
-
-* Featured anime carousel
-* Top-rated anime carousel
-* Personalized carousel
-* Responsive layout
-* Pagination system
-* Dynamic genre selection UI
+## 🚀 Live Demo
+- Frontend (Netlify): [your-link-here]  
+- Backend (Render): [your-link-here]
 
 ---
 
-## 🏗️ Project Structure
+## 🧠 Overview
 
-```
-project/
-│
-├── app.py                # Flask API server
-├── recommender.py       # Recommendation engine + dataset loading
-├── fix_images.py        # Dataset preprocessing (image fixing using Jikan API)
-│
-├── index.html           # Homepage
-├── browse.html          # Browse results page
-├── anime.html           # Anime detail page
-├── script.js            # Frontend logic
-├── style.css            # Styling
-│
-└── anime_fixed_images.csv  # Final processed dataset
-```
+This project is a data-driven anime recommendation system that simulates a real-world product experience.
+
+It combines:
+- Content-based filtering (genres, score, episodes)
+- Similarity-based recommendations (cosine similarity)
+- User interaction signals (favorites)
+
+Users can:
+- Discover anime through curated carousels  
+- Apply advanced filters  
+- Search intelligently across multiple fields  
+- Build a personalized recommendation feed  
+
+---
+
+## 🧩 Key Features
+
+### 🔹 Personalized Recommendations
+- Uses cosine similarity on genre + normalized features  
+- Prioritizes **recent user preferences**  
+- Falls back to curated recommendations if no user data exists  
+
+### 🔹 Smart Search
+- Multi-field scoring system:
+  - Title (highest weight)
+  - Synonyms
+  - Genre
+  - Studio
+
+### 🔹 Advanced Filtering
+- Genre selection (max 5)
+- Score filtering (5–10)
+- Episode constraints
+- Adaptive AND / OR logic
+
+### 🔹 Responsive UI
+- Mobile-first design  
+- Carousel system with:
+  - Auto-play  
+  - Drag/swipe  
+  - Arrow navigation  
+- Favorites stored using localStorage  
+
+### 🔹 Optimized Backend
+- Flask API  
+- Cached endpoints for performance  
+- Pagination system  
+- Clean data pipeline  
+
+---
+
+## 🏗️ Architecture
+
+### Frontend
+- HTML / CSS / Vanilla JavaScript  
+- Dynamic rendering system  
+- Local state (favorites, filters)  
+
+### Backend
+- Flask API  
+- Pandas for data processing  
+- Scikit-learn for recommendation logic  
 
 ---
 
 ## ⚙️ How It Works
 
-### Backend (Flask)
-
-Key endpoints:
-
-* `/recommend` → Filter-based recommendations
-* `/personalized` → Personalized recommendations
-* `/featured` → Curated anime (cached)
-* `/top-rated` → High-rated anime (cached)
-* `/genres` → Available genres
-
-Caching is used for featured and top-rated endpoints to improve performance.
+### 1. Data Processing
+- Dataset cleaned and normalized  
+- Scores scaled using MinMaxScaler  
+- Genres converted to structured format  
+- Missing values handled  
 
 ---
 
-### Recommendation System
+### 2. Recommendation Engine
 
-The ranking system combines:
+#### Filter-Based Recommendation
+Users apply filters (genre, score, episodes)
 
-* Normalized score (quality)
-* Episode count (shorter preferred)
-* Genre match strength
-* Search relevance
+Final score: 0.4 * score_norm +
+0.2 * (1 - episodes_norm) +
+0.2 * genre_match +
+0.2 * search_score
 
-Personalization:
 
-* Uses cosine similarity on:
+#### Personalized Recommendation
+Uses cosine similarity on:
+- Genre encoding  
+- Score  
+- Episode count  
 
-  * Genre encoding
-  * Score
-  * Episode count
+Final score:0.7 * similarity +
+0.3 * quality_score
 
----
+## 🧪 Running the Project
 
-## ▶️ How to Run
+### 🌐 Demo Mode (Recommended)
 
-### 1. Install dependencies
+This project is configured to run using deployed services:
 
-pip install flask pandas scikit-learn flask-cors
+- Frontend → Netlify  
+- Backend → Render  
 
----
+Simply open the live frontend URL:
 
-### 2. Dataset
-
-This project uses a **preprocessed dataset**:
-
-anime_fixed_images.csv
-
-* Cleaned and normalized
-* Duplicate entries removed
-* Missing values handled
-* Broken images fixed using Jikan API
-
-Important:
-
-* The dataset is already included
-* No external API or Kaggle access is required
+[your-netlify-link]
 
 ---
 
-### 3. Run backend
+### 💻 Local Development (Optional)
 
+To run locally, you must update API endpoints in the frontend.
+
+#### 1. Start backend
+pip install -r requirements.txt
 python app.py
 
-Server runs at:
+
+#### 2. Update API URLs
+
+In your JavaScript files, replace:
+
+
+https://your-render-backend-url
+
+
+with:
+
+
 http://127.0.0.1:5000
 
----
 
-### 4. Run frontend
-
-Open:
+#### 3. Open frontend
 
 index.html
 
 ---
 
-## 🧪 Usage
+⚠️ Note:
+The current project is optimized for deployed usage, not local development by default.
 
-### 🔎 Search
-
-* Enter a query in the search bar
-* Press Enter
-* Redirects to browse results
-
-### 🎯 Filters
-
-* Select genres (max 5)
-* Add score / episode constraints
-* Click "Apply" → results page
-
-### 🎴 Anime Cards
-
-* Click → opens detail page
-* Data is temporarily stored using localStorage
 
 ---
 
-## ⚠️ Current Limitations (WIP)
+## 📊 Dataset
 
-### Missing Features
-
-* Like/favorite system not implemented
-* No "My List" section
-* Cards are not right-clickable
-* No persistent user data
-
-### UX Issues
-
-* Navigation depends on browser history
-* No URL-based routing (anime IDs not in URL)
-* Opening pages in new tabs can break navigation flow
-
-### Performance
-
-* No lazy loading for images
-* No caching for filter queries
-* Repeated API calls on navigation
+- Based on MyAnimeList dataset (Kaggle)  
+- Image issues fixed using Jikan API  
+- Cleaned and preprocessed before use  
 
 ---
 
-## 🛠️ Planned Improvements
+## ⚠️ Limitations
 
-* Implement like/favorite system (localStorage → backend DB)
-* Add "My List" page
-* Introduce URL-based routing (anime.html?id=...)
-* Add right-click / open in new tab support
-* Improve navigation fallback system
-* Add lazy loading for images
-* Optimize backend performance and caching
+- Dataset is outdated (last major update ~2015)  
+- Newer anime are not included  
+- No user authentication (favorites stored locally)  
+- No collaborative filtering  
+- Backend hosted on free tier (possible cold starts)  
 
 ---
 
-## 📊 Dataset Pipeline
+## 💡 Future Improvements
 
-The dataset was created manually using:
-
-* MyAnimeList dataset (original source)
-* Custom preprocessing
-* Image fixing using Jikan API (see fix_images.py)
-
-Note:
-
-* `fix_images.py` is a one-time preprocessing script
-* It is NOT required to run the application
+- Live anime API integration  
+- User accounts & database  
+- Collaborative filtering system  
+- Improved ranking model  
+- Watch history tracking  
 
 ---
 
-## 🧠 Notes
+## 🎯 For Recruiters
 
-* The application runs entirely on a local dataset
-* No external APIs are used at runtime
-* Recommendation system is content-based (not collaborative filtering)
-* Backend and data pipeline are cleanly separated
+This project demonstrates:
+- Full-stack development  
+- Recommendation system design  
+- Data preprocessing & feature engineering  
+- Responsive UI/UX  
+- Performance optimization (caching, pagination)  
 
 ---
 
-## 📌 Status
+## 🧑‍💻 Author
 
-🚧 Work in Progress — not production-ready
+Built by [Joseph Egbejule]
