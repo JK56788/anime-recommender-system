@@ -4,7 +4,9 @@ let showAllGenres = false;
 let availableGenres = [];
 let selectedGenres = [];
 let animeStore = {};
-const API_BASE = "https://anime-recommender-system-p1m6.onrender.com";
+const API_BASE = "localhost"
+  ? "http://127.0.0.1:5000"
+  : "https://anime-recommender-system-p1m6.onrender.com";
 
 
 
