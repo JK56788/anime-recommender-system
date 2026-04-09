@@ -2,10 +2,6 @@
 
 A full-stack anime recommendation platform that delivers personalized and filter-based suggestions using a hybrid recommendation engine.
 
-## 🚀 Live Demo
-- Frontend (Netlify): [your-link-here]  
-- Backend (Render): [your-link-here]
-
 ---
 
 ## 🧠 Overview
@@ -22,6 +18,19 @@ Users can:
 - Apply advanced filters  
 - Search intelligently across multiple fields  
 - Build a personalized recommendation feed  
+
+---
+
+## 🚀 Deployment
+
+The application was deployed using:
+
+- **Netlify** → frontend hosting  
+- **Render** → backend API hosting  
+
+⚠️ Due to free-tier limitations (memory constraints and cold starts), the live deployment may be unstable.
+
+👉 For the most reliable experience, run the project locally.
 
 ---
 
@@ -88,70 +97,35 @@ Users can:
 ### 2. Recommendation Engine
 
 #### Filter-Based Recommendation
-Users apply filters (genre, score, episodes)
+Final score:
 
-Final score: 0.4 * score_norm +
+0.4 * score_norm +
 0.2 * (1 - episodes_norm) +
 0.2 * genre_match +
 0.2 * search_score
 
+---
 
 #### Personalized Recommendation
-Uses cosine similarity on:
-- Genre encoding  
-- Score  
-- Episode count  
+Final score:
 
-Final score:0.7 * similarity +
+0.7 * similarity +
 0.3 * quality_score
-
-## 🧪 Running the Project
-
-### 🌐 Demo Mode (Recommended)
-
-This project is configured to run using deployed services:
-
-- Frontend → Netlify  
-- Backend → Render  
-
-Simply open the live frontend URL:
-
-[your-netlify-link]
 
 ---
 
-### 💻 Local Development (Optional)
+## 🧪 Running the Project
 
-To run locally, you must update API endpoints in the frontend.
+### 💻 Local Development (Recommended)
 
 #### 1. Start backend
 pip install -r requirements.txt
 python app.py
 
 
-#### 2. Update API URLs
-
-In your JavaScript files, replace:
-
-
-https://your-render-backend-url
-
-
-with:
-
-
-http://127.0.0.1:5000
-
-
-#### 3. Open frontend
+#### 2. Open frontend
 
 index.html
-
----
-
-⚠️ Note:
-The current project is optimized for deployed usage, not local development by default.
-
 
 ---
 
@@ -166,20 +140,10 @@ The current project is optimized for deployed usage, not local development by de
 ## ⚠️ Limitations
 
 - Dataset is outdated (last major update ~2015)  
-- Newer anime are not included  
-- No user authentication (favorites stored locally)  
+- Backend is resource-intensive for free hosting environments  
+- Free-tier deployment (Render) may cause instability or crashes  
+- No authentication system  
 - No collaborative filtering  
-- Backend hosted on free tier (possible cold starts)  
-
----
-
-## 💡 Future Improvements
-
-- Live anime API integration  
-- User accounts & database  
-- Collaborative filtering system  
-- Improved ranking model  
-- Watch history tracking  
 
 ---
 
@@ -190,10 +154,12 @@ This project demonstrates:
 - Recommendation system design  
 - Data preprocessing & feature engineering  
 - Responsive UI/UX  
-- Performance optimization (caching, pagination)  
+- API deployment using Netlify and Render  
+
+👉 For full functionality and best performance, please run the project locally.
 
 ---
 
 ## 🧑‍💻 Author
 
-Built by [Joseph Egbejule]
+Built by Joseph Egbejule.
