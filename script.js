@@ -4,6 +4,7 @@ let showAllGenres = false;
 let availableGenres = [];
 let selectedGenres = [];
 let animeStore = {};
+const API_BASE = "https://anime-recommender-system-p1m6.onrender.com";
 
 
 
@@ -19,7 +20,7 @@ function getItemsPerPage() {
 
 
 function loadGenres() {
-  fetch("http://127.0.0.1:5000/genres")
+  fetch(`${API_BASE}/genres`)
     .then((res) => {
       if (!res.ok) throw new Error("Failed to load genres");
       return res.json();
@@ -727,7 +728,7 @@ function loadBrowseResults() {
   // reset page if not present
   currentPage = parseInt(params.get("page")) || 1;
 
-  let url = `http://127.0.0.1:5000/recommend?page=${currentPage}&per_page=${perPage}&mode=${mode}&`;
+  let url = `${API_BASE}/recommend?page=${currentPage}&per_page=${perPage}&mode=${mode}&`;
 
   genres.forEach(g => {
     url += `genre=${encodeURIComponent(g)}&`;
@@ -909,13 +910,13 @@ function goToPage(page) {
 // INIT CAROUSELS
 // -----------------------------
 const featuredCarousel = createCarousel({
-  url: "http://127.0.0.1:5000/featured",
+  url: `${API_BASE}/featured`,
   containerId: "featured",
   intervalTime: 4500
 });
 
 const topRatedCarousel = createCarousel({
-  url: "http://127.0.0.1:5000/top-rated",
+  url: `${API_BASE}/top-rated`,
   containerId: "top-rated",
   intervalTime: 5000
 });
@@ -923,7 +924,7 @@ const topRatedCarousel = createCarousel({
 ///good now.
 
 const personalizedCarousel = createCarousel({
-  url: "http://127.0.0.1:5000/personalized",
+  url: `${API_BASE}/personalized`,
   containerId: "personalized",
   intervalTime: 4000
 });
@@ -1157,7 +1158,7 @@ async function loadFavoritesPage() {
         return animeStore[fav.anime_id];
       }
 
-      const res = await fetch(`http://127.0.0.1:5000/anime/${fav.anime_id}`);
+      const res = await fetch(`${API_BASE}/anime/${fav.anime_id}`);
       const data = await res.json();
 
       animeStore[data.anime_id] = data;
