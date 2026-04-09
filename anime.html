@@ -28,7 +28,7 @@ const container = document.getElementById("anime-details");
 if (!id) {
   container.innerHTML = "<p>No anime selected.</p>";
 } else {
-  fetch(`http://127.0.0.1:5000/anime/${id}`)
+  fetch(`https://anime-recommender-system-p1m6.onrender.com/anime/${id}`)
     .then(res => {
       if (!res.ok) throw new Error("Anime not found");
       return res.json();
