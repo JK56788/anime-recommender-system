@@ -20,10 +20,6 @@
 <script src="script.js"></script>
 
 <script>
-const API_BASE = window.location.hostname === "localhost"
-  ? "http://127.0.0.1:5000"
-  : "https://anime-recommender-system-p1m6.onrender.com";
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
