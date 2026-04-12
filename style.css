@@ -187,6 +187,8 @@ button {
   color: #facc15;
 }
 
+  
+
 /* ========================= */
 /* CAROUSEL WRAPPER */
 /* ========================= */
@@ -207,8 +209,9 @@ button {
   display: flex;
   align-items: stretch;
   gap: var(--gap);
-  transition: transform 0.55s ease;
+  transition: translateZ(0);
   will-change: transform;
+  pointer-events: auto;
   min-width: 100%;
 }
 
@@ -380,6 +383,7 @@ button {
   background: rgba(20, 24, 33, 0.95);
   border: 1px solid rgba(225, 29, 72, 0.4);
   color: var(--text);
+  pointer-events: auto;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
