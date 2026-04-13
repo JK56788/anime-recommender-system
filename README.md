@@ -131,9 +131,30 @@ index.html
 
 ## 📊 Dataset
 
-- Based on MyAnimeList dataset (Kaggle)  
-- Image issues fixed using Jikan API  
-- Cleaned and preprocessed before use  
+- Based on the MyAnimeList dataset from Kaggle  
+- The original dataset contained **broken and outdated image URLs**, which negatively impacted the UI  
+
+### 🛠 Data Fixing Process
+
+To resolve this:
+
+- A custom script (`fix_images.py`) was developed  
+- The script queries the **Jikan API** (MyAnimeList unofficial API)  
+- Broken or missing image URLs were replaced with **valid, up-to-date images**  
+- Invalid or incomplete entries were filtered out  
+
+### 📦 Final Dataset
+
+- Generated a cleaned dataset: `anime_fixed_images.csv`  
+- Contains **6000+ validated anime entries**  
+- Ensures consistent image rendering and reliable metadata across the application  
+
+---
+
+This preprocessing step was critical for:
+- Maintaining visual integrity of the UI  
+- Preventing broken image rendering  
+- Improving overall user experience
 
 ---
 
